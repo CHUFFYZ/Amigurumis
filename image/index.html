@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amigurumis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Header -->
+    <header class="bg-teal-600 text-white p-4 flex items-center justify-between">
+        <div class="flex items-center">
+            <img src="https://amigurumis.onrender.com/image/logo.png" alt="Logo" class="h-12 mr-4">
+            <h1 class="text-2xl font-bold">Amigurumis</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="amigurumi-container">
+        <!-- Los contenedores dinámicos se insertarán aquí -->
+    </main>
+
+    <!-- Pagination -->
+    <div class="container mx-auto p-4 flex justify-center">
+        <button class="bg-teal-600 text-white px-4 py-2 rounded mx-2" onclick="changePage(-1)">Anterior</button>
+        <span id="page-info" class="text-lg mx-2">Página 1</span>
+        <button class="bg-teal-600 text-white px-4 py-2 rounded mx-2" onclick="changePage(1)">Siguiente</button>
+    </div>
+
+    <script>
+        const itemsPerPage = 10;
+        let currentPage = 1;
+        const phoneNumber = "9381563508";
+
+        const amigurumis = [
+            {
+                id: 1,
+                name: "Capibara",
+                price: 15.00,
+                available: true,
+                image: "https://amigurumis.onrender.com/image/capibara.jpg",
+                height: "15 cm",
+                width: "10 cm",
+                material: "Lana suave"
+            },
+            {
+                id: 2,
+                name: "Oso Freddy",
+                price: 12.00,
+                available: false,
+                image: "https://amigurumis.onrender.com/image/oso-freddy.jpg",
+                height: "12 cm",
+                width: "8 cm",
+                material: "Algodón"
+            },
+            {
+                id: 4,
+                name: "Luffy",
+                price: 18.00,
+                available: true,
+                image: "https://amigurumis.onrender.com/image/luffy.jpg",
+                height: "18 cm",
+                width: "12 cm",
+                material: "Lana acrílica"
+            },
+            {
+                id: 5,
+                name: "Chihuahua",
+                price: 15.00,
+                available: true,
+                image: "https://amigurumis.onrender.com/image/chihuahua.jpg",
+                height: "15 cm",
+                width: "10 cm",
+                material: "Lana suave"
+            },
+            {
+                id: 6,
+                name: "Ramo tipo 1",
+                price: 12.00,
+                available: false,
+                image: "https://amigurumis.onrender.com/image/ramo.jpg",
+                height: "12 cm",
+                width: "8 cm",
+                material: "Algodón"
+            },
+            {
+                id: 7,
+                name: "Ramo tipo 2",
+                price: 18.00,
+                available: true,
+                image: "https://amigurumis.onrender.com/image/ramo2.jpg",
+                height: "18 cm",
+                width: "12 cm",
+                material: "Lana acrílica"
+            },
+            {
+                id: 8,
+                name: "Capibara",
+                price: 15.00,
+                available: true,
+                image: "https://amigurumis.onrender.com/image/capibara.jpg",
+                height: "15 cm",
+                width: "10 cm",
+                material: "Lana suave"
+            },
+            {
+                id: 9,
+                name: "Oso",
+                price: 12.00,
+                available: false,
+                image: "https://amigurumis.onrender.com/image/oso.jpg",
+                height: "12 cm",
+                width: "8 cm",
+                material: "Algodón"
+            },
+            {
+                id: 10,
+                name: "Rinoceronte",
+                price: 18.00,
+                available: true,
+                image: "https://amigurumis.onrender.com/image/rinoceronte.jpg",
+                height: "18 cm",
+                width: "12 cm",
+                material: "Lana acrílica"
+            },
+            {
+                id: 11,
+                name: "Capibara",
+                price: 15.00,
+                available: true,
+                image: "https://amigurumis.onrender.com/image/capibara.jpg",
+                height: "15 cm",
+                width: "10 cm",
+                material: "Lana suave"
+            },
+            {
+                id: 12,
+                name: "Oso",
+                price: 12.00,
+                available: false,
+                image: "https://amigurumis.onrender.com/image/oso.jpg",
+                height: "12 cm",
+                width: "8 cm",
+                material: "Algodón"
+            },
+            {
+                id: 13,
+                name: "Rinoceronte",
+                price: 18.00,
+                available: true,
+                image: "https://amigurumis.onrender.com/image/rinoceronte.jpg",
+                height: "18 cm",
+                width: "12 cm",
+                material: "Lana acrílica"
+            }
+        ];
+
+        function renderCards() {
+            const container = document.getElementById('amigurumi-container');
+            container.innerHTML = '';
+            
+            amigurumis.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card bg-white rounded-lg shadow-lg overflow-hidden h-[500px] w-full relative';
+                card.dataset.id = item.id;
+                
+                card.innerHTML = `
+                    <div class="card-front absolute w-full h-full p-4 flex flex-col">
+                        <div class="card-image-container">
+                            <img src="${item.image}" alt="${item.name}" class="card-image">
+                        </div>
+                        <div class="mt-4 flex-grow flex flex-col">
+                            <h2 class="text-lg font-semibold">${item.name}</h2>
+                            <p class="text-gray-600">Precio: $${item.price.toFixed(2)}</p>
+                            <p class="text-sm border-2 p-1 rounded text-center mt-2 ${item.available ? 'border-green-500 text-green-500' : 'border-red-500 text-red-500'}">
+                                ${item.available ? 'Disponible' : 'No disponible'}
+                            </p>
+                            <div class="dropdown relative mt-auto">
+                                <button class="bg-teal-600 text-white px-4 py-2 rounded w-full toggle-dropdown">Preguntar</button>
+                                <div class="dropdown-content">
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', 'Hola, ¿sigue disponible el ${item.name}?', '${item.image}')">¿Sigue disponible?</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', '¿Se puede hacer un pedido de ${item.name}?', '${item.image}')">Hacer pedido</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', '¿Me podría dar más información sobre el ${item.name}?', '${item.image}')">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back absolute w-full h-full p-6 bg-white flex flex-col">
+                        <h2 class="text-lg font-semibold mb-4">${item.name} - Detalles</h2>
+                        <div class="flex flex-col space-y-2 mb-4">
+                            <p><span class="font-medium">Altura:</span> ${item.height}</p>
+                            <p><span class="font-medium">Anchura:</span> ${item.width}</p>
+                            <p><span class="font-medium">Material:</span> ${item.material}</p>
+                        </div>
+                        <button class="bg-teal-600 text-white px-4 py-2 rounded w-full mt-auto" onclick="flipCard(${item.id})">Volver</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            
+            updatePage();
+            addCardEventListeners();
+        }
+
+        function updatePage() {
+            const cards = document.querySelectorAll('.card');
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            
+            cards.forEach((card, index) => {
+                card.style.display = (index >= start && index < end) ? 'block' : 'none';
+            });
+            
+            document.getElementById('page-info').textContent = `Página ${currentPage}`;
+        }
+
+        function changePage(direction) {
+            const totalPages = Math.ceil(amigurumis.length / itemsPerPage);
+            currentPage += direction;
+            
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+            
+            updatePage();
+        }
+
+        function flipCard(id) {
+            const card = document.querySelector(`.card[data-id="${id}"]`);
+            card.classList.toggle('flipped');
+        }
+
+        function sendWhatsApp(itemName, message, imageUrl) {
+            const fullMessage = `Regarding the ${itemName} amigurumi: ${message} Image: ${imageUrl}`;
+            const encodedMessage = encodeURIComponent(fullMessage);
+            const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(url, '_blank');
+        }
+
+        function toggleDropdown(e) {
+            e.stopPropagation();
+            const dropdown = e.target.closest('.dropdown');
+            const isActive = dropdown.classList.contains('active');
+            
+            // Cerrar todos los dropdowns primero
+            document.querySelectorAll('.dropdown').forEach(d => {
+                if (d !== dropdown) {
+                    d.classList.remove('active');
+                    d.closest('.card').classList.remove('active');
+                }
+            });
+            
+            // Alternar el estado del dropdown actual
+            dropdown.classList.toggle('active');
+            dropdown.closest('.card').classList.toggle('active');
+        }
+
+        function addCardEventListeners() {
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.closest('.dropdown-content') && !e.target.closest('.toggle-dropdown')) {
+                        card.classList.toggle('flipped');
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.toggle-dropdown').forEach(button => {
+                button.addEventListener('click', toggleDropdown);
+            });
+            
+            // Cerrar dropdown al hacer clic fuera
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.dropdown')) {
+                    document.querySelectorAll('.dropdown').forEach(d => {
+                        d.classList.remove('active');
+                        d.closest('.card').classList.remove('active');
+                    });
+                }
+            });
+        }
+
+        renderCards();
+    </script>
+</body>
+</html>
