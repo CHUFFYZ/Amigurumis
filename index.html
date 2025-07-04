@@ -4,15 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amigurumis</title>
-    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link rel="shortcut icon" href="https://amigurumis.onrender.com/image/logo.png">
+    <style>
+        .card-front, .card-back {
+            backface-visibility: hidden;
+            transition: transform 0.6s;
+        }
+        .card-front {
+            transform: rotateY(0deg);
+        }
+        .card-back {
+            transform: rotateY(180deg);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        .card.flipped .card-front {
+            transform: rotateY(-180deg);
+        }
+        .card.flipped .card-back {
+            transform: rotateY(0deg);
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            width: 100%;
+            background: rgb(255, 255, 255);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.37);
+            z-index: 50;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .card {
+            position: relative;
+            z-index: 1;
+        }
+        .card.active {
+            z-index: 100;
+        }
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+        .card-image-container {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 0.75rem !important;
+            clip-path: inset(0 0 0 0 round 0.75rem) !important;
+            display: block;
+        }
+        .logo-img {
+            transition: transform 0.3s ease;
+            border-radius: 0.75rem;
+            cursor: pointer;
+        }
+        .logo-img:hover {
+            transform: scale(1.1);
+        }
+        .card {
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans">
     <!-- Header -->
     <header class="bg-teal-600 text-white p-4 flex items-center justify-between">
         <div class="flex items-center">
-            <img src="https://amigurumis.onrender.com/image/logo.png" alt="Logo" class="h-12 mr-4">
+            <img src="https://amigurumis.onrender.com/image/logo.jpg" alt="Logo" 
+                 class="logo-img h-12 mr-4" 
+                 onclick="window.location.reload()">
             <h1 class="text-2xl font-bold">Amigurumis</h1>
         </div>
     </header>
@@ -24,9 +97,9 @@
 
     <!-- Pagination -->
     <div class="container mx-auto p-4 flex justify-center">
-        <button class="bg-teal-600 text-white px-4 py-2 rounded mx-2" onclick="changePage(-1)">Anterior</button>
+        <button class="bg-teal-600 text-white px-4 py-2 rounded-lg mx-2" onclick="changePage(-1)">Anterior</button>
         <span id="page-info" class="text-lg mx-2">Página 1</span>
-        <button class="bg-teal-600 text-white px-4 py-2 rounded mx-2" onclick="changePage(1)">Siguiente</button>
+        <button class="bg-teal-600 text-white px-4 py-2 rounded-lg mx-2" onclick="changePage(1)">Siguiente</button>
     </div>
 
     <script>
@@ -169,7 +242,7 @@
                 card.innerHTML = `
                     <div class="card-front absolute w-full h-full p-4 flex flex-col">
                         <div class="card-image-container">
-                            <img src="${item.image}" alt="${item.name}" class="card-image">
+                            <img src="${item.image}" alt="${item.name}" class="rounded-lg">
                         </div>
                         <div class="mt-4 flex-grow flex flex-col">
                             <h2 class="text-lg font-semibold">${item.name}</h2>
@@ -178,7 +251,7 @@
                                 ${item.available ? 'Disponible' : 'No disponible'}
                             </p>
                             <div class="dropdown relative mt-auto">
-                                <button class="bg-teal-600 text-white px-4 py-2 rounded w-full toggle-dropdown">Preguntar</button>
+                                <button class="bg-teal-600 text-white px-4 py-2 rounded-lg w-full toggle-dropdown">Preguntar</button>
                                 <div class="dropdown-content">
                                     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', 'Hola, ¿sigue disponible el ${item.name}?', '${item.image}')">¿Sigue disponible?</a>
                                     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', '¿Se puede hacer un pedido de ${item.name}?', '${item.image}')">Hacer pedido</a>
@@ -194,7 +267,14 @@
                             <p><span class="font-medium">Anchura:</span> ${item.width}</p>
                             <p><span class="font-medium">Material:</span> ${item.material}</p>
                         </div>
-                        <button class="bg-teal-600 text-white px-4 py-2 rounded w-full mt-auto" onclick="flipCard(${item.id})">Volver</button>
+                        <div class="dropdown relative mt-auto">
+                            <button class="bg-teal-600 text-white px-4 py-2 rounded-lg w-full toggle-dropdown">Preguntar</button>
+                            <div class="dropdown-content">
+                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', 'Hola, ¿sigue disponible el ${item.name}?', '${item.image}')">¿Sigue disponible?</a>
+                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', '¿Se puede hacer un pedido de ${item.name}?', '${item.image}')">Hacer pedido</a>
+                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', '¿Me podría dar más información sobre el ${item.name}?', '${item.image}')">Más información</a>
+                            </div>
+                        </div>
                     </div>
                 `;
                 container.appendChild(card);
