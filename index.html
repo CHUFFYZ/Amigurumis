@@ -7,6 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="https://amigurumis.onrender.com/image/logo.png">
     <style>
+        .flex h1{
+            font-family: 'Caveat', cursive;
+        }
         .card-front, .card-back {
             backface-visibility: hidden;
             transition: transform 0.6s;
@@ -86,7 +89,7 @@
             <img src="https://amigurumis.onrender.com/image/logo.jpg" alt="Logo" 
                  class="logo-img h-12 mr-4" 
                  onclick="window.location.reload()">
-            <h1 class="text-2xl font-bold">Amigurumis</h1>
+            <h1 class="text-2xl font-bold">Amigurumis Rosy</h1>
         </div>
     </header>
 
@@ -190,40 +193,40 @@
             },
             {
                 id: 10,
-                name: "Rinoceronte",
+                name: "Spunky ver.Naranja",
                 price: 18.00,
                 available: true,
-                image: "https://amigurumis.onrender.com/image/rinoceronte.jpg",
+                image: "https://amigurumis.onrender.com/image/spuky-naranja.jpg",
                 height: "18 cm",
                 width: "12 cm",
                 material: "Lana acrílica"
             },
             {
                 id: 11,
-                name: "Capibara",
+                name: "Spunky ver.Amarillo",
                 price: 15.00,
                 available: true,
-                image: "https://amigurumis.onrender.com/image/capibara.jpg",
+                image: "https://amigurumis.onrender.com/image/spuky-amarillo.jpg",
                 height: "15 cm",
                 width: "10 cm",
                 material: "Lana suave"
             },
             {
                 id: 12,
-                name: "Oso",
+                name: "Spunky ver.Rosa",
                 price: 12.00,
                 available: false,
-                image: "https://amigurumis.onrender.com/image/oso.jpg",
+                image: "https://amigurumis.onrender.com/image/spuky-rosa.jpg",
                 height: "12 cm",
                 width: "8 cm",
                 material: "Algodón"
             },
             {
                 id: 13,
-                name: "Rinoceronte",
+                name: "Spunky ver.Verde",
                 price: 18.00,
                 available: true,
-                image: "https://amigurumis.onrender.com/image/rinoceronte.jpg",
+                image: "https://amigurumis.onrender.com/image/spuky-verde.jpg",
                 height: "18 cm",
                 width: "12 cm",
                 material: "Lana acrílica"
@@ -312,7 +315,7 @@
         }
 
         function sendWhatsApp(itemName, message, imageUrl) {
-            const fullMessage = `Regarding the ${itemName} amigurumi: ${message} Image: ${imageUrl}`;
+            const fullMessage = `${itemName} amigurumi: ${message} Image: ${imageUrl}`;
             const encodedMessage = encodeURIComponent(fullMessage);
             const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
             window.open(url, '_blank');
