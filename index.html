@@ -1,369 +1,134 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amigurumis</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="shortcut icon" href="https://amigurumis-rosy.onrender.com/image/logo.png">
-    <style>
-        .flex h1{
-            font-family: 'Caveat', cursive;
-        }
-        .card-front, .card-back {
-            backface-visibility: hidden;
-            transition: transform 0.6s;
-        }
-        .card-front {
-            transform: rotateY(0deg);
-        }
-        .card-back {
-            transform: rotateY(180deg);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-        .card.flipped .card-front {
-            transform: rotateY(-180deg);
-        }
-        .card.flipped .card-back {
-            transform: rotateY(0deg);
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            bottom: 100%;
-            left: 0;
-            width: 100%;
-            background: rgb(255, 255, 255);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.37);
-            z-index: 50;
-            border-radius: 0.5rem;
-            overflow: hidden;
-        }
-        .card {
-            position: relative;
-            z-index: 1;
-        }
-        .card.active {
-            z-index: 100;
-        }
-        .dropdown.active .dropdown-content {
-            display: block;
-        }
-        .card-image-container {
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .card-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 0.75rem !important;
-            clip-path: inset(0 0 0 0 round 0.75rem) !important;
-            display: block;
-        }
-        .logo-img {
-            transition: transform 0.3s ease;
-            border-radius: 0.75rem;
-            cursor: pointer;
-        }
-        .logo-img:hover {
-            transform: scale(1.1);
-        }
-        .card {
-            border-radius: 0.75rem;
-            overflow: hidden;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amigurumis Rosy</title>
+  <link rel="shortcut icon" href="https://amigurumis-rosy.onrender.com/image/logo.png">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 font-sans">
-    <!-- Header -->
-    <header class="bg-teal-600 text-white p-4 flex items-center justify-between">
-        <div class="flex items-center">
-            <img src="https://amigurumis-rosy.onrender.com/image/logo.jpg" alt="Logo" 
-                 class="logo-img h-12 mr-4" 
-                 onclick="window.location.reload()">
-            <h1 class="text-2xl font-bold">Amigurumis Rosy</h1>
-        </div>
-    </header>
+<body>
 
-    <!-- Main Content -->
-    <main class="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="amigurumi-container">
-        <!-- Los contenedores dinámicos se insertarán aquí -->
-    </main>
-
-    <!-- Pagination -->
-    <div class="container mx-auto p-4 flex justify-center">
-        <button class="bg-teal-600 text-white px-4 py-2 rounded-lg mx-2" onclick="changePage(-1)">Anterior</button>
-        <span id="page-info" class="text-lg mx-2">Página 1</span>
-        <button class="bg-teal-600 text-white px-4 py-2 rounded-lg mx-2" onclick="changePage(1)">Siguiente</button>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="header-brand" onclick="window.location.reload()">
+      <img src="https://amigurumis-rosy.onrender.com/image/logo.jpg"
+           alt="Amigurumis Rosy Logo"
+           class="header-logo">
+      <div>
+        <div class="header-title">Amigurumis Rosy</div>
+        <div class="header-tagline">Tejidos con amor ✦ Hechos a mano</div>
+      </div>
     </div>
 
-    <script>
-        const itemsPerPage = 10;
-        let currentPage = 1;
-        const phoneNumber = "9381780837";
+  </header>
 
-        const amigurumis = [
-            {
-                id: 1,
-                name: "Capibara",
-                price: 15.00,
-                available: true,
-                image: "https://amigurumis-rosy.onrender.com/image/capibara.jpg",
-                height: "15 cm",
-                width: "10 cm",
-                material: "Acrílico"
-            },
-            {
-                id: 2,
-                name: "Oso Freddy",
-                price: 12.00,
-                available: false,
-                image: "https://amigurumis-rosy.onrender.com/image/oso-freddy.jpg",
-                height: "12 cm",
-                width: "8 cm",
-                material: "Acrílico"
-            },
-            {
-                id: 4,
-                name: "Luffy",
-                price: 18.00,
-                available: true,
-                image: "https://amigurumis-rosy.onrender.com/image/luffy.jpg",
-                height: "18 cm",
-                width: "12 cm",
-                material: "Acrílico"
-            },
-            {
-                id: 5,
-                name: "Chihuahua",
-                price: 15.00,
-                available: true,
-                image: "https://amigurumis-rosy.onrender.com/image/chihuahua.jpg",
-                height: "15 cm",
-                width: "10 cm",
-                material: "Acrílico"
-            },
-            {
-                id: 6,
-                name: "Ramo tipo 1",
-                price: 12.00,
-                available: false,
-                image: "https://amigurumis-rosy.onrender.com/image/ramo.jpg",
-                height: "12 cm",
-                width: "8 cm",
-                material: "Acrílico"
-            },
-            {
-                id: 7,
-                name: "Ramo tipo 2",
-                price: 18.00,
-                available: true,
-                image: "https://amigurumis-rosy.onrender.com/image/ramo2.jpg",
-                height: "18 cm",
-                width: "12 cm",
-                material: "Acrílico"
-            },
-            {
-                id: 8,
-                name: "Flor reversible",
-                price: 15.00,
-                available: true,
-                image: "https://amigurumis-rosy.onrender.com/image/flor-reversible.jpg",
-                height: "15 cm",
-                width: "10 cm",
-                material: "Acrílico"
-            },
-            {
-                id: 9,
-                name: "Pollo",
-                price: 12.00,
-                available: false,
-                image: "https://amigurumis-rosy.onrender.com/image/pollo.jpg",
-                height: "12 cm",
-                width: "8 cm",
-                material: "Acrílico"
-            },
-            {
-                id: 10,
-                name: "Spunky ver.Naranja",
-                price: 18.00,
-                available: true,
-                image: "https://amigurumis-rosy.onrender.com/image/spuky-naranja.jpg",
-                height: "18 cm",
-                width: "12 cm",
-                material: "Acrílico"
-            },
-            {
-                id: 11,
-                name: "Spunky ver.Amarillo",
-                price: 15.00,
-                available: true,
-                image: "https://amigurumis-rosy.onrender.com/image/spuky-amarillo.jpg",
-                height: "15 cm",
-                width: "10 cm",
-                material: "Acrílico"
-            },
-            {
-                id: 12,
-                name: "Spunky ver.Rosa",
-                price: 12.00,
-                available: false,
-                image: "https://amigurumis-rosy.onrender.com/image/spuky-rosa.jpg",
-                height: "12 cm",
-                width: "8 cm",
-                material: "Acrílico"
-            },
-            {
-                id: 13,
-                name: "Spunky ver.Verde",
-                price: 18.00,
-                available: true,
-                image: "https://amigurumis-rosy.onrender.com/image/spuky-verde.jpg",
-                height: "18 cm",
-                width: "12 cm",
-                material: "Acrílico"
-            }
-        ];
+  <!-- ===== FILTER BAR ===== -->
+  <div class="filter-bar" id="filter-bar">
+    <div class="filter-bar-inner" id="filter-bar-inner">
 
-        function renderCards() {
-            const container = document.getElementById('amigurumi-container');
-            container.innerHTML = '';
-            
-            amigurumis.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'card bg-white rounded-lg shadow-lg overflow-hidden h-[500px] w-full relative';
-                card.dataset.id = item.id;
-                
-                card.innerHTML = `
-                    <div class="card-front absolute w-full h-full p-4 flex flex-col">
-                        <div class="card-image-container">
-                            <img src="${item.image}" alt="${item.name}" class="rounded-lg">
-                        </div>
-                        <div class="mt-4 flex-grow flex flex-col">
-                            <h2 class="text-lg font-semibold">${item.name}</h2>
-                            <p class="text-gray-600">Precio: $${item.price.toFixed(2)}</p>
-                            <p class="text-sm border-2 p-1 rounded text-center mt-2 ${item.available ? 'border-green-500 text-green-500' : 'border-red-500 text-red-500'}">
-                                ${item.available ? 'Disponible' : 'No disponible'}
-                            </p>
-                            <div class="dropdown relative mt-auto">
-                                <button class="bg-teal-600 text-white px-4 py-2 rounded-lg w-full toggle-dropdown">Preguntar</button>
-                                <div class="dropdown-content">
-                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', 'Hola, ¿sigue disponible el ${item.name}?', '${item.image}')">¿Sigue disponible?</a>
-                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', '¿Se puede hacer un pedido de ${item.name}?', '${item.image}')">Hacer pedido</a>
-                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', '¿Me podría dar más información sobre el ${item.name}?', '${item.image}')">Más información</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-back absolute w-full h-full p-6 bg-white flex flex-col">
-                        <h2 class="text-lg font-semibold mb-4">${item.name} - Detalles</h2>
-                        <div class="flex flex-col space-y-2 mb-4">
-                            <p><span class="font-medium">Altura:</span> ${item.height}</p>
-                            <p><span class="font-medium">Anchura:</span> ${item.width}</p>
-                            <p><span class="font-medium">Material:</span> ${item.material}</p>
-                        </div>
-                        <div class="dropdown relative mt-auto">
-                            <button class="bg-teal-600 text-white px-4 py-2 rounded-lg w-full toggle-dropdown">Preguntar</button>
-                            <div class="dropdown-content">
-                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', 'Hola, ¿sigue disponible el ${item.name}?', '${item.image}')">¿Sigue disponible?</a>
-                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', '¿Se puede hacer un pedido de ${item.name}?', '${item.image}')">Hacer pedido</a>
-                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="sendWhatsApp('${item.name}', '¿Me podría dar más información sobre el ${item.name}?', '${item.image}')">Más información</a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-            
-            updatePage();
-            addCardEventListeners();
-        }
+      <!-- Disponibilidad -->
+      <div class="filter-group-label">Ver:</div>
+      <button class="filter-pill active" data-filter="all">Todos</button>
+      <button class="filter-pill" data-filter="available">Disponibles</button>
+      <button class="filter-pill" data-filter="unavailable">Agotados</button>
 
-        function updatePage() {
-            const cards = document.querySelectorAll('.card');
-            const start = (currentPage - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            
-            cards.forEach((card, index) => {
-                card.style.display = (index >= start && index < end) ? 'block' : 'none';
-            });
-            
-            document.getElementById('page-info').textContent = `Página ${currentPage}`;
-        }
+      <div class="filter-divider"></div>
 
-        function changePage(direction) {
-            const totalPages = Math.ceil(amigurumis.length / itemsPerPage);
-            currentPage += direction;
-            
-            if (currentPage < 1) currentPage = 1;
-            if (currentPage > totalPages) currentPage = totalPages;
-            
-            updatePage();
-        }
+      <!-- Precio -->
+      <div class="filter-group-label">Precio:</div>
+      <button class="filter-pill" data-sort="price-asc">↑ Menor</button>
+      <button class="filter-pill" data-sort="price-desc">↓ Mayor</button>
 
-        function flipCard(id) {
-            const card = document.querySelector(`.card[data-id="${id}"]`);
-            card.classList.toggle('flipped');
-        }
+      <div class="filter-divider"></div>
 
-        function sendWhatsApp(itemName, message, imageUrl) {
-            const fullMessage = `${itemName} amigurumi: ${message} Image: ${imageUrl}`;
-            const encodedMessage = encodeURIComponent(fullMessage);
-            const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-            window.open(url, '_blank');
-        }
+      <!-- Nombre -->
+      <div class="filter-group-label">Nombre:</div>
+      <button class="filter-pill" data-sort="name-asc">A → Z</button>
+      <button class="filter-pill" data-sort="name-desc">Z → A</button>
 
-        function toggleDropdown(e) {
-            e.stopPropagation();
-            const dropdown = e.target.closest('.dropdown');
-            const isActive = dropdown.classList.contains('active');
-            
-            // Cerrar todos los dropdowns primero
-            document.querySelectorAll('.dropdown').forEach(d => {
-                if (d !== dropdown) {
-                    d.classList.remove('active');
-                    d.closest('.card').classList.remove('active');
-                }
-            });
-            
-            // Alternar el estado del dropdown actual
-            dropdown.classList.toggle('active');
-            dropdown.closest('.card').classList.toggle('active');
-        }
+    </div>
 
-        function addCardEventListeners() {
-            document.querySelectorAll('.card').forEach(card => {
-                card.addEventListener('click', (e) => {
-                    if (!e.target.closest('.dropdown-content') && !e.target.closest('.toggle-dropdown')) {
-                        card.classList.toggle('flipped');
-                    }
-                });
-            });
-            
-            document.querySelectorAll('.toggle-dropdown').forEach(button => {
-                button.addEventListener('click', toggleDropdown);
-            });
-            
-            // Cerrar dropdown al hacer clic fuera
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.dropdown')) {
-                    document.querySelectorAll('.dropdown').forEach(d => {
-                        d.classList.remove('active');
-                        d.closest('.card').classList.remove('active');
-                    });
-                }
-            });
-        }
+    <!-- Expand toggle -->
+    <button class="filter-toggle" id="filter-toggle" aria-label="Mostrar más filtros">
+      <svg class="toggle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+  </div>
 
-        renderCards();
-    </script>
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-eyebrow">✦ Colección artesanal</div>
+    <h1 class="hero-title">
+      Cada pieza,<br>
+      <span>única y tuya</span>
+    </h1>
+    <p class="hero-sub">
+      Amigurumis tejidos a mano con mucho cariño.
+      Personajes, animales y flores que se quedan en el corazón para siempre.
+    </p>
+    <a href="#catalogo" class="hero-cta">
+      ✦ Ver catálogo
+    </a>
+  </section>
+
+  <!-- ===== CATALOG ===== -->
+  <section id="catalogo">
+    <div class="section-label">
+      <h2>Catálogo</h2>
+      <div class="section-line"></div>
+      <span class="section-count" id="section-count"></span>
+    </div>
+
+    <div class="catalog-grid" id="catalog-grid">
+      <!-- Cards se insertan dinámicamente -->
+    </div>
+  </section>
+
+  <!-- ===== PAGINATION ===== -->
+  <div class="pagination" id="pagination"></div>
+
+  <!-- ===== MODAL / DRAWER ===== -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-drawer">
+      <div class="modal-handle"></div>
+      <div class="modal-title" id="modal-item-name">Nombre</div>
+      <div class="modal-subtitle" id="modal-item-sub">Precio</div>
+      <div class="modal-actions">
+        <button class="modal-action-btn" data-action="available">
+          <span class="btn-icon">🔍</span>
+          <div>
+            <div>¿Sigue disponible?</div>
+            <div class="btn-desc">Pregunta si aún puedes conseguirlo</div>
+          </div>
+        </button>
+        <button class="modal-action-btn" data-action="order">
+          <span class="btn-icon">🛍️</span>
+          <div>
+            <div>Hacer un pedido</div>
+            <div class="btn-desc">Solicita tu pieza personalizada</div>
+          </div>
+        </button>
+        <button class="modal-action-btn" data-action="info">
+          <span class="btn-icon">✨</span>
+          <div>
+            <div>Más información</div>
+            <div class="btn-desc">Medidas, colores, tiempos de entrega…</div>
+          </div>
+        </button>
+      </div>
+      <button class="modal-close" id="modal-close-btn">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    Hecho con <span>♥</span> por Amigurumis Rosy &nbsp;·&nbsp; Todos los derechos reservados
+  </footer>
+
+  <!-- Scripts: primero los datos, luego la lógica -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
