@@ -10,7 +10,7 @@ const AMIGURUMIS = [
   {
     id: 1,
     name: "Capibara",
-    price: 15.00,
+    price: 0,
     available: true,
     image: "https://amigurumis-rosy.onrender.com/image/capibara.webp",
     height: "15 cm",
@@ -21,7 +21,7 @@ const AMIGURUMIS = [
   {
     id: 2,
     name: "Oso Freddy",
-    price: 12.00,
+    price: 0,
     available: false,
     image: "https://amigurumis-rosy.onrender.com/image/oso-freddy.webp",
     height: "12 cm",
@@ -32,7 +32,7 @@ const AMIGURUMIS = [
   {
     id: 4,
     name: "Luffy",
-    price: 18.00,
+    price: 0,
     available: true,
     image: "https://amigurumis-rosy.onrender.com/image/luffy.webp",
     height: "18 cm",
@@ -43,7 +43,7 @@ const AMIGURUMIS = [
   {
     id: 5,
     name: "Chihuahua",
-    price: 15.00,
+    price: 0,
     available: true,
     image: "https://amigurumis-rosy.onrender.com/image/chihuahua.webp",
     height: "15 cm",
@@ -54,7 +54,7 @@ const AMIGURUMIS = [
   {
     id: 6,
     name: "Ramo tipo 1",
-    price: 12.00,
+    price: 0,
     available: false,
     image: "https://amigurumis-rosy.onrender.com/image/ramo.webp",
     height: "12 cm",
@@ -65,7 +65,7 @@ const AMIGURUMIS = [
   {
     id: 7,
     name: "Ramo tipo 2",
-    price: 18.00,
+    price: 0,
     available: true,
     image: "https://amigurumis-rosy.onrender.com/image/ramo2.webp",
     height: "18 cm",
@@ -76,7 +76,7 @@ const AMIGURUMIS = [
   {
     id: 8,
     name: "Flor reversible",
-    price: 15.00,
+    price: 0,
     available: true,
     image: "https://amigurumis-rosy.onrender.com/image/flor-reversible.webp",
     height: "15 cm",
@@ -87,7 +87,7 @@ const AMIGURUMIS = [
   {
     id: 9,
     name: "Pollo",
-    price: 12.00,
+    price: 0,
     available: false,
     image: "https://amigurumis-rosy.onrender.com/image/pollo.webp",
     height: "12 cm",
@@ -98,7 +98,7 @@ const AMIGURUMIS = [
   {
     id: 10,
     name: "Spunky Naranja",
-    price: 18.00,
+    price: 0,
     available: true,
     image: "https://amigurumis-rosy.onrender.com/image/spuky-naranja.webp",
     height: "18 cm",
@@ -109,7 +109,7 @@ const AMIGURUMIS = [
   {
     id: 11,
     name: "Spunky Amarillo",
-    price: 15.00,
+    price: 0,
     available: true,
     image: "https://amigurumis-rosy.onrender.com/image/spuky-amarillo.webp",
     height: "15 cm",
@@ -120,7 +120,7 @@ const AMIGURUMIS = [
   {
     id: 12,
     name: "Spunky Rosa",
-    price: 12.00,
+    price: 0,
     available: false,
     image: "https://amigurumis-rosy.onrender.com/image/spuky-rosa.webp",
     height: "12 cm",
@@ -131,7 +131,7 @@ const AMIGURUMIS = [
   {
     id: 13,
     name: "Spunky Verde",
-    price: 18.00,
+    price: 0,
     available: true,
     image: "https://amigurumis-rosy.onrender.com/image/spuky-verde.webp",
     height: "18 cm",
