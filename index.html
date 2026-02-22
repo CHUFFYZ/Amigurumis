@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amigurumis Rosy</title>
+  <link rel="shortcut icon" href="https://amigurumis-rosy.onrender.com/image/logo.webp">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="header-brand" onclick="window.location.reload()">
+      <img src="https://amigurumis-rosy.onrender.com/image/logo.webp"
+           alt="Amigurumis Rosy Logo"
+           class="header-logo">
+      <div>
+        <div class="header-title">Amigurumis Rosy</div>
+        <div class="header-tagline">Tejidos con amor ✦ Hechos a mano</div>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ===== FILTER BAR ===== -->
+  <div class="filter-bar" id="filter-bar">
+    <div class="filter-bar-inner" id="filter-bar-inner">
+
+      <!-- Disponibilidad -->
+      <div class="filter-group-label">Ver:</div>
+      <button class="filter-pill active" data-filter="all">Todos</button>
+      <button class="filter-pill" data-filter="available">Disponibles</button>
+      <button class="filter-pill" data-filter="unavailable">Agotados</button>
+
+      <div class="filter-divider"></div>
+
+      <!-- Precio -->
+      <div class="filter-group-label">Precio:</div>
+      <button class="filter-pill" data-sort="price-asc">↑ Menor</button>
+      <button class="filter-pill" data-sort="price-desc">↓ Mayor</button>
+
+      <div class="filter-divider"></div>
+
+      <!-- Nombre -->
+      <div class="filter-group-label">Nombre:</div>
+      <button class="filter-pill" data-sort="name-asc">A → Z</button>
+      <button class="filter-pill" data-sort="name-desc">Z → A</button>
+
+    </div>
+
+    <!-- Expand toggle -->
+    <button class="filter-toggle" id="filter-toggle" aria-label="Mostrar más filtros">
+      <svg class="toggle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-eyebrow">✦ Colección artesanal</div>
+    <h1 class="hero-title">
+      Cada pieza,<br>
+      <span>única y tuya</span>
+    </h1>
+    <p class="hero-sub">
+      Amigurumis tejidos a mano con mucho cariño.
+      Personajes, animales y flores que se quedan en el corazón para siempre.
+    </p>
+    <a href="#catalogo" class="hero-cta">
+      ✦ Ver catálogo
+    </a>
+  </section>
+
+  <!-- ===== CATALOG ===== -->
+  <section id="catalogo">
+    <div class="section-label">
+      <h2>Catálogo</h2>
+      <div class="section-line"></div>
+      <span class="section-count" id="section-count"></span>
+    </div>
+
+    <div class="catalog-grid" id="catalog-grid">
+      <!-- Cards se insertan dinámicamente -->
+    </div>
+  </section>
+
+  <!-- ===== PAGINATION ===== -->
+  <div class="pagination" id="pagination"></div>
+
+  <!-- ===== MODAL / DRAWER ===== -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-drawer">
+      <div class="modal-handle"></div>
+      <div class="modal-title" id="modal-item-name">Nombre</div>
+      <div class="modal-subtitle" id="modal-item-sub">Precio</div>
+      <div class="modal-actions">
+        <button class="modal-action-btn" data-action="available">
+          <span class="btn-icon">🔍</span>
+          <div>
+            <div>¿Sigue disponible?</div>
+            <div class="btn-desc">Pregunta si aún puedes conseguirlo</div>
+          </div>
+        </button>
+        <button class="modal-action-btn" data-action="order">
+          <span class="btn-icon">🛍️</span>
+          <div>
+            <div>Hacer un pedido</div>
+            <div class="btn-desc">Solicita tu pieza personalizada</div>
+          </div>
+        </button>
+        <button class="modal-action-btn" data-action="info">
+          <span class="btn-icon">✨</span>
+          <div>
+            <div>Más información</div>
+            <div class="btn-desc">Medidas, colores, tiempos de entrega…</div>
+          </div>
+        </button>
+      </div>
+      <button class="modal-close" id="modal-close-btn">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">✕</button>
+      <img class="lightbox-img" id="lightbox-img" src="" alt="">
+      <div class="lightbox-caption">
+        <div class="lb-name" id="lightbox-name"></div>
+        <div class="lb-price" id="lightbox-price"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    Hecho con <span>♥</span> por Amigurumis Rosy &nbsp;·&nbsp; Todos los derechos reservados
+  </footer>
+
+  <!-- Scripts: primero los datos, luego la lógica -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
