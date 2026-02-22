@@ -18,9 +18,9 @@
   --accent-2: #ff7fd4;
   --accent-3: #7fc8ff;
   --text: #f0eeff;
-  --text-muted: #8880aa;
-  --green: #5fffa0;
-  --red: #ff6b8a;
+  --text-muted: #847ab3;
+  --green: #00ff66;
+  --red: #ff0037;
   --card-h: 480px;
 }
 
@@ -410,13 +410,13 @@ header {
   backdrop-filter: blur(8px);
 }
 .badge.available {
-  background: rgba(95,255,160,0.15);
-  border: 1px solid rgba(95,255,160,0.35);
+  background: rgba(95, 255, 159, 0.37);
+  border: 1px solid rgba(95, 255, 159, 0.568);
   color: var(--green);
 }
 .badge.unavailable {
-  background: rgba(255,107,138,0.12);
-  border: 1px solid rgba(255,107,138,0.3);
+  background: rgba(255, 107, 139, 0.37);
+  border: 1px solid rgba(255, 107, 139, 0.582);
   color: var(--red);
 }
 
@@ -425,8 +425,8 @@ header {
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 8px;
   background: rgba(10,10,15,0.65);
   backdrop-filter: blur(8px);
@@ -440,8 +440,9 @@ header {
   transform: scale(0.85);
   transition: opacity 0.25s, transform 0.25s, background 0.2s;
   z-index: 5;
+  opacity: 1;
 }
-.btn-zoom svg { width: 15px; height: 15px; }
+.btn-zoom svg { width: 30px; height: 30px; }
 .card:hover .btn-zoom {
   opacity: 1;
   transform: scale(1);
@@ -850,8 +851,8 @@ header {
   position: absolute;
   top: -14px;
   right: -14px;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--surface-2);
   border: 1px solid var(--border);
