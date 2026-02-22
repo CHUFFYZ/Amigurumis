@@ -19,8 +19,11 @@
   --accent-3: #7fc8ff;
   --text: #f0eeff;
   --text-muted: #847ab3;
-  --green: #00ff66;
-  --red: #ff0037;
+  --green: #1ea703;
+  --red: #ff0000;
+  --background-badge: #ffffff;
+  /*--green: #00ff66;
+  --red: #ff0037;*/
   --card-h: 480px;
 }
 
@@ -397,26 +400,37 @@ header {
 }
 
 /* Availability badge */
-.badge {
-  position: absolute;
+.badge-background {
+  position: absolute;       /* Se coloca en la esquina */
   top: 12px;
   right: 12px;
+  display: inline-flex;     /* Se ajusta al contenido interno */
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  background: var(--background-badge);
+  padding: 0px;             /* Opcional: espacio extra alrededor */
+}
+
+.badge {
+  position: relative;       /* Ya no absolute, deja que fluya */
   padding: 0.3rem 0.75rem;
   border-radius: 100px;
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   backdrop-filter: blur(8px);
 }
+
 .badge.available {
   background: rgba(95, 255, 159, 0.37);
-  border: 1px solid rgba(95, 255, 159, 0.568);
+  border: 2px solid rgba(57, 196, 113, 0.568);
   color: var(--green);
 }
 .badge.unavailable {
   background: rgba(255, 107, 139, 0.37);
-  border: 1px solid rgba(255, 107, 139, 0.582);
+  border: 2px solid rgba(170, 65, 88, 0.582);
   color: var(--red);
 }
 

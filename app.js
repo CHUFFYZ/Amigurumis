@@ -174,8 +174,10 @@ function renderGrid() {
                  data-src="${item.image}"
                  alt="${item.name}"
                  width="400" height="260">
-            <div class="badge ${item.available ? 'available' : 'unavailable'}">
-              ${item.available ? '● Disponible' : '● Agotado'}
+            <div class="badge-background">  
+              <div class="badge ${item.available ? 'available' : 'unavailable'}">
+                ${item.available ? '● Disponible' : '● Agotado'}
+              </div>
             </div>
             <button class="btn-zoom" onclick="event.stopPropagation(); openLightbox(${item.id})" aria-label="Ver imagen completa">
               ${zoomSVG}
